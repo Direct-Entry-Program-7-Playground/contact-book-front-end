@@ -1,0 +1,21 @@
+{
+  "name": "contact-book-front-end",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Direct-Entry-Program-7-Playground/contact-book-front-end.git"
+  },
+  "keywords": [
+    "HTML5",
+    "CSS3"
+  ],
+  "author": "Manoj Randeni <randeni.ramr@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Direct-Entry-Program-7-Playground/contact-book-front-end/issues"
+  },
+  "homepage": "https://github.com/Direct-Entry-Program-7-Playground/contact-book-front-end#readme"
+}
