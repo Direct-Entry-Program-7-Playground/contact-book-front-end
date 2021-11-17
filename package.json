@@ -3,9 +3,9 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
-    "clear": "rm -rf ./docs ./dist",
-    "start": "npm run clear && parcel index.html --public-url ./ --dist-dir ./docs",
-    "build": "npm run clear && parcel build index.html --public-url ./ --dist-dir ./docs"
+    "clear": "rm -rf ./docs ",
+    "start": "parcel index.html",
+    "build": "rm -rf ./docs&& parcel build index.html --public-url ./ --dist-dir ./docs"
   },
   "repository": {
     "type": "git",
@@ -23,5 +23,8 @@
   "homepage": "https://github.com/Direct-Entry-Program-7-Playground/contact-book-front-end#readme",
   "devDependencies": {
     "parcel": "^2.0.1"
+  },
+  "dependencies": {
+    "bootstrap": "^5.1.3"
   }
 }
