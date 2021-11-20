@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Add New Contact</title>
+    <link
+      rel="stylesheet"
+      href="./node_modules/bootstrap/dist/css/bootstrap.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="./node_modules/bootstrap-icons/font/bootstrap-icons.css"
+    />
+    <link rel="stylesheet" href="./css/styles.css" />
+    <link rel="stylesheet" href="./css/new-contact.css" />
+  </head>
+  <body
+    class="
+      container
+      d-flex
+      flex-column
+      min-vh-100
+      justify-content-center
+      align-items-center
+      gd-bg
+    "
+  >
+    <div class="container col-lg-8 p-4 bg-light bg-opacity-75 rounded-3">
+      <div class="row">
+        <div class="col-1">
+          <a
+            class="btn btn-primary btn-lg bg-primary bg-gradient float-start"
+            href="./index.html"
+          >
+            <i class="bi bi-house-door"></i>
+          </a>
+        </div>
+        <div class="col">
+          <h1 class="mx-auto" style="width: fit-content">Add new Contact</h1>
+        </div>
+      </div>
+      <hr />
+      <div class="row">
+        <form class="needs-validation" novalidate>
+          <div class="row g-3">
+            <div class="col-3">
+              <label class="form-label">Contact Image</label>
+              <img
+                id="img-upload"
+                src="./asset/img/placeholder-image.jpg"
+                alt="test image"
+                class="rounded-3 border border-light"
+                onclick="document.getElementById('formFile').click();"
+              />
+              <input
+                class="form-control"
+                type="file"
+                id="formFile"
+                accept="image/*"
+                style="display: none"
+              />
+            </div>
+            <div class="col">
+              <div class="row g-3">
+                <div class="col-md-6">
+                  <label for="validationFirstName" class="form-label"
+                    >First name</label
+                  >
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="validationFirstName"
+                    placeholder="Eg: Mark"
+                    required
+                  />
+                  <div id="validationFName" class="invalid-feedback">
+                    Please provide a valid first name
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <label for="validationLastName" class="form-label"
+                    >Last name</label
+                  >
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="validationLastName"
+                    placeholder="Eg: Otto"
+                    required
+                  />
+                  <div id="validationLName" class="invalid-feedback">
+                    Please provide a valid last name
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <label for="validationPhoneNumber" class="form-label"
+                    >Phone Number</label
+                  >
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="validationPhoneNumber"
+                    placeholder="Eg: 077-417-8875"
+                    required
+                  />
+                  <div id="validationPNumber" class="invalid-feedback">
+                    Please provide a valid phone number
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <label for="validationEmail" class="form-label">Email</label>
+                  <input
+                    type="email"
+                    class="form-control"
+                    id="validationEmail"
+                    placeholder="Eg: mark.otto@mail.com"
+                    required
+                  />
+                  <div id="validationMail" class="invalid-feedback">
+                    Please provide a valid email address
+                  </div>
+                </div>
+                <div class="col-md-12">
+                  <label for="validationAddress" class="form-label"
+                    >Address</label
+                  >
+                  <input
+                    type="text"
+                    class="form-control"
+                    placeholder="Eg: 1701 Abner Road, Barron, WI, Wisconsin, 54812"
+                    id="validationAddress"
+                    required
+                  />
+                  <div class="invalid-feedback">
+                    Please provide a valid address
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-12 d-grid">
+              <button
+                class="btn btn-primary btn-lg bg-primary bg-gradient"
+                type="submit"
+              >
+                Save New Contact
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <script src="./node_modules/jquery/dist/jquery.min.js"></script>
+    <script type="module" src="./ts/app.ts"></script>
+  </body>
+</html>
