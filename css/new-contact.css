@@ -4,3 +4,6 @@
 #img-upload {
   width: 100%;
 }
+#invlidImageAlert {
+  display: none;
+}

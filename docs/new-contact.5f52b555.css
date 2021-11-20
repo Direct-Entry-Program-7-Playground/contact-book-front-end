@@ -4,5 +4,8 @@
 #img-upload {
   width: 100%;
 }
+#invlidImageAlert {
+  display: none;
+}
 
 /*# sourceMappingURL=new-contact.5f52b555.css.map */

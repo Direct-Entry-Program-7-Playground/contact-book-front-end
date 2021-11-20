@@ -478,9 +478,12 @@ $(document).ready(function() {
     function readURL(input) {
         if (input.files && input.files[0]) {
             var reader = new FileReader();
+            $("#invlidImageAlert").hide();
             reader.onload = function(e) {
-                console.log(e.target.result);
-                if ((e.target.result + "").split("/")[0] !== "data:image") return;
+                if ((e.target.result + "").split("/")[0] !== "data:image") {
+                    $("#invlidImageAlert").stop().show(200).delay(5000).hide(200);
+                    return;
+                }
                 $("#img-upload").attr("src", e.target.result + "");
             };
             reader.readAsDataURL(input.files[0]);
