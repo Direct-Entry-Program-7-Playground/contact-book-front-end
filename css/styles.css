@@ -10,3 +10,8 @@
 .gd-bg {
   background-image: linear-gradient(to top, #a18cd1 0%, #fbc2eb 100%);
 }
+
+.list-group {
+  max-height: 450px;
+  overflow-y: scroll;
+}
