@@ -77,6 +77,7 @@
                     class="form-control"
                     id="validationFirstName"
                     placeholder="Eg: Mark"
+                    autofocus
                     required
                   />
                   <div id="validationFName" class="invalid-feedback">
@@ -103,10 +104,12 @@
                     >Phone Number</label
                   >
                   <input
-                    type="text"
+                    type="tel"
                     class="form-control"
                     id="validationPhoneNumber"
-                    placeholder="Eg: 077-417-8875"
+                    placeholder="Eg: 0774178875"
+                    minlength="10"
+                    maxlength="10"
                     required
                   />
                   <div id="validationPNumber" class="invalid-feedback">
@@ -156,7 +159,6 @@
       </div>
     </div>
 
-    <script src="./node_modules/jquery/dist/jquery.min.js"></script>
     <script type="module" src="./ts/app.ts"></script>
   </body>
 </html>
