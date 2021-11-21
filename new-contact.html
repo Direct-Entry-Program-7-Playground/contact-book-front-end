@@ -107,11 +107,13 @@
                     type="tel"
                     class="form-control"
                     id="validationPhoneNumber"
-                    placeholder="Eg: 0774178875"
-                    minlength="10"
-                    maxlength="10"
+                    placeholder="Eg: 077-417-8875"
+                    minlength="12"
+                    maxlength="12"
+                    pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
                     required
                   />
+                  <small class="text-muted">Format: 077-417-8875</small>
                   <div id="validationPNumber" class="invalid-feedback">
                     Please provide a valid phone number
                   </div>
