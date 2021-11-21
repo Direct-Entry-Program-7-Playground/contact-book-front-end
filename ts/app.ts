@@ -23,26 +23,25 @@ import $ from "jquery";
     );
   });
 })();
+
 $(document).ready(function () {
-  function readURL(input) {
-    if (input.files && input.files[0]) {
-      var reader = new FileReader();
-      $("#invlidImageAlert").hide();
+  const reader = new FileReader();
 
-      reader.onload = function (e) {
-        if ((e.target.result + "").split("/")[0] !== "data:image") {
-          $("#invlidImageAlert").stop().show(200).delay(5000).hide(200);
+  reader.onload = (e) => {
+    $("#img-upload").attr("src", e.target.result as string);
+  };
 
-          return;
-        }
-        $("#img-upload").attr("src", e.target.result + "");
-      };
-
-      reader.readAsDataURL(input.files[0]);
+  $("#formFile").on("input", () => {
+    let files = (document.getElementById("formFile") as HTMLInputElement).files;
+    $("#invlidImageAlert").hide();
+    if (files && files[0]) {
+      const reg = /(image\/[a-z]+)/gi;
+      if (files[0].type.match(reg)) {
+        reader.readAsDataURL(files[0]);
+      } else {
+        $("#invlidImageAlert").stop().show(200).delay(10000).hide(200);
+        return;
+      }
     }
-  }
-
-  $("#formFile").on("change", function () {
-    readURL(this);
   });
 });

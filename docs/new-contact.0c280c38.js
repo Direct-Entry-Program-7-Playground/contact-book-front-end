@@ -478,22 +478,21 @@ var _jqueryDefault = parcelHelpers.interopDefault(_jquery);
     });
 })();
 _jqueryDefault.default(document).ready(function() {
-    function readURL(input) {
-        if (input.files && input.files[0]) {
-            var reader = new FileReader();
-            _jqueryDefault.default("#invlidImageAlert").hide();
-            reader.onload = function(e) {
-                if ((e.target.result + "").split("/")[0] !== "data:image") {
-                    _jqueryDefault.default("#invlidImageAlert").stop().show(200).delay(5000).hide(200);
-                    return;
-                }
-                _jqueryDefault.default("#img-upload").attr("src", e.target.result + "");
-            };
-            reader.readAsDataURL(input.files[0]);
+    const reader = new FileReader();
+    reader.onload = (e)=>{
+        _jqueryDefault.default("#img-upload").attr("src", e.target.result);
+    };
+    _jqueryDefault.default("#formFile").on("input", ()=>{
+        let files = document.getElementById("formFile").files;
+        _jqueryDefault.default("#invlidImageAlert").hide();
+        if (files && files[0]) {
+            const reg = /(image\/[a-z]+)/gi;
+            if (files[0].type.match(reg)) reader.readAsDataURL(files[0]);
+            else {
+                _jqueryDefault.default("#invlidImageAlert").stop().show(200).delay(10000).hide(200);
+                return;
+            }
         }
-    }
-    _jqueryDefault.default("#formFile").on("change", function() {
-        readURL(this);
     });
 });
 
