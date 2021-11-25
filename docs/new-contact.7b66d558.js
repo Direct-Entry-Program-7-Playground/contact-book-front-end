@@ -494,6 +494,22 @@ _jqueryDefault.default(document).ready(function() {
             }
         }
     });
+    _jqueryDefault.default("#validationEmail").on("change", (e)=>{
+        if (_jqueryDefault.default("#validationEmail").val().toString().match(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/)) removeRequired();
+        else addRequired();
+    });
+    _jqueryDefault.default("#validationPhoneNumber").on("change", (e)=>{
+        if (_jqueryDefault.default("#validationPhoneNumber").val().toString().match(/[0-9]{10}/)) removeRequired();
+        else addRequired();
+    });
+    function removeRequired() {
+        _jqueryDefault.default("#validationEmail").removeAttr("required");
+        _jqueryDefault.default("#validationPhoneNumber").removeAttr("required");
+    }
+    function addRequired() {
+        _jqueryDefault.default("#validationEmail").attr("required", 1);
+        _jqueryDefault.default("#validationPhoneNumber").attr("required", 1);
+    }
 });
 
 },{"jquery":"bE6My","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"bE6My":[function(require,module,exports) {

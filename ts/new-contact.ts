@@ -44,4 +44,40 @@ $(document).ready(function () {
       }
     }
   });
+
+  $("#validationEmail").on("change", (e) => {
+    if (
+      $("#validationEmail")
+        .val()
+        .toString()
+        .match(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/)
+    ) {
+      removeRequired();
+    } else {
+      addRequired();
+    }
+  });
+
+  $("#validationPhoneNumber").on("change", (e) => {
+    if (
+      $("#validationPhoneNumber")
+        .val()
+        .toString()
+        .match(/[0-9]{10}/)
+    ) {
+      removeRequired();
+    } else {
+      addRequired();
+    }
+  });
+
+  function removeRequired() {
+    $("#validationEmail").removeAttr("required");
+    $("#validationPhoneNumber").removeAttr("required");
+  }
+
+  function addRequired() {
+    $("#validationEmail").attr("required", 1);
+    $("#validationPhoneNumber").attr("required", 1);
+  }
 });
