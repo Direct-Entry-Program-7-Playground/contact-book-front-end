@@ -495,11 +495,11 @@ _jqueryDefault.default(document).ready(function() {
         }
     });
     _jqueryDefault.default("#validationEmail").on("change", (e)=>{
-        if (_jqueryDefault.default("#validationEmail").val().toString().match(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/)) removeRequired();
+        if (_jqueryDefault.default("#validationEmail").val().match(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/)) removeRequired();
         else addRequired();
     });
     _jqueryDefault.default("#validationPhoneNumber").on("change", (e)=>{
-        if (_jqueryDefault.default("#validationPhoneNumber").val().toString().match(/[0-9]{10}/)) removeRequired();
+        if (_jqueryDefault.default("#validationPhoneNumber").val().match(/[0-9]{10}/)) removeRequired();
         else addRequired();
     });
     function removeRequired() {
@@ -509,6 +509,26 @@ _jqueryDefault.default(document).ready(function() {
     function addRequired() {
         _jqueryDefault.default("#validationEmail").attr("required", 1);
         _jqueryDefault.default("#validationPhoneNumber").attr("required", 1);
+    }
+});
+_jqueryDefault.default("#btnSubmit").on("click", ()=>{
+    const fname = _jqueryDefault.default("#validationFirstName").val().trim();
+    const lname = _jqueryDefault.default("#validationLastName").val().trim();
+    const phone = _jqueryDefault.default("#validationPhoneNumber").val().trim();
+    const email = _jqueryDefault.default("#validationEmail").val().trim();
+    const address = _jqueryDefault.default("#validationAddress").val().trim();
+    if (!/[A-Za-z]{3,}/.test(fname)) {
+        _jqueryDefault.default("#validationFirstName").trigger("focus");
+        return;
+    } else if (phone && !/[\d]{3,10}/.test(phone)) {
+        _jqueryDefault.default("#validationPhoneNumber").trigger("focus");
+        return;
+    } else if (email && !/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)) {
+        _jqueryDefault.default("#validationEmail").trigger("focus");
+        return;
+    } else if (address && !/[.]{3,}/.test(address)) {
+        _jqueryDefault.default("#validationAddress").trigger("focus");
+        return;
     }
 });
 

@@ -47,10 +47,9 @@ $(document).ready(function () {
 
   $("#validationEmail").on("change", (e) => {
     if (
-      $("#validationEmail")
-        .val()
-        .toString()
-        .match(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/)
+      ($("#validationEmail").val() as String).match(
+        /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/
+      )
     ) {
       removeRequired();
     } else {
@@ -59,12 +58,7 @@ $(document).ready(function () {
   });
 
   $("#validationPhoneNumber").on("change", (e) => {
-    if (
-      $("#validationPhoneNumber")
-        .val()
-        .toString()
-        .match(/[0-9]{10}/)
-    ) {
+    if (($("#validationPhoneNumber").val() as String).match(/[0-9]{10}/)) {
       removeRequired();
     } else {
       addRequired();
@@ -79,5 +73,30 @@ $(document).ready(function () {
   function addRequired() {
     $("#validationEmail").attr("required", 1);
     $("#validationPhoneNumber").attr("required", 1);
+  }
+});
+
+$("#btnSubmit").on("click", () => {
+  const fname = ($("#validationFirstName").val() as String).trim();
+  const lname = ($("#validationLastName").val() as String).trim();
+  const phone = ($("#validationPhoneNumber").val() as String).trim();
+  const email = ($("#validationEmail").val() as String).trim();
+  const address = ($("#validationAddress").val() as String).trim();
+
+  if (!/[A-Za-z]{3,}/.test(fname)) {
+    $("#validationFirstName").trigger("focus");
+    return;
+  } else if (phone && !/[\d]{3,10}/.test(phone)) {
+    $("#validationPhoneNumber").trigger("focus");
+    return;
+  } else if (
+    email &&
+    !/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)
+  ) {
+    $("#validationEmail").trigger("focus");
+    return;
+  } else if (address && !/[.]{3,}/.test(address)) {
+    $("#validationAddress").trigger("focus");
+    return;
   }
 });
