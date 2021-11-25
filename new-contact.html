@@ -68,7 +68,7 @@
               <small class="text-muted">Click on the image to browse</small>
             </div>
             <div class="col">
-              <div class="row g-3">
+              <div class="row g-3 mb-3">
                 <div class="col-md-6">
                   <label for="validationFirstName" class="form-label"
                     >First name</label
@@ -78,6 +78,7 @@
                     class="form-control"
                     id="validationFirstName"
                     placeholder="Eg: Mark"
+                    minlength="3"
                     autofocus
                     required
                   />
@@ -94,12 +95,13 @@
                     class="form-control"
                     id="validationLastName"
                     placeholder="Eg: Otto"
-                    required
                   />
                   <div id="validationLName" class="invalid-feedback">
                     Please provide a valid last name
                   </div>
                 </div>
+              </div>
+              <div class="row g-3 mb-3">
                 <div class="col-md-6">
                   <label for="validationPhoneNumber" class="form-label"
                     >Phone Number</label
@@ -108,13 +110,11 @@
                     type="tel"
                     class="form-control"
                     id="validationPhoneNumber"
-                    placeholder="Eg: 077-417-8875"
-                    minlength="12"
-                    maxlength="12"
-                    pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
-                    required
+                    placeholder="Eg: 0774178875"
+                    minlength="3"
+                    maxlength="10"
+                    pattern="[0-9]{10}"
                   />
-                  <small class="text-muted">Format: 077-417-8875</small>
                   <div id="validationPNumber" class="invalid-feedback">
                     Please provide a valid phone number
                   </div>
@@ -126,12 +126,17 @@
                     class="form-control"
                     id="validationEmail"
                     placeholder="Eg: mark.otto@mail.com"
-                    required
                   />
                   <div id="validationMail" class="invalid-feedback">
-                    Please provide a valid email address
+                    Please provide a valid email
                   </div>
                 </div>
+                <small class="text-muted mt-0"
+                  >Please provide at least a valid phone number or an email as
+                  contact</small
+                >
+              </div>
+              <div class="row g-3">
                 <div class="col-md-12">
                   <label for="validationAddress" class="form-label"
                     >Address</label
@@ -141,7 +146,7 @@
                     class="form-control"
                     placeholder="Eg: 1701 Abner Road, Barron, WI, Wisconsin, 54812"
                     id="validationAddress"
-                    required
+                    minlength="3"
                   />
                   <div class="invalid-feedback">
                     Please provide a valid address
@@ -162,6 +167,6 @@
       </div>
     </div>
 
-    <script type="module" src="./ts/app.ts"></script>
+    <script type="module" src="./ts/new-contact.ts"></script>
   </body>
 </html>

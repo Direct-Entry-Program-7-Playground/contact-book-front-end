@@ -1,1 +1,104 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Add New Contact</title><link rel="stylesheet" href="index.98b80042.css"><link rel="stylesheet" href="new-contact.27266dc6.css"><link rel="stylesheet" href="index.6a9e72d9.css"><link rel="stylesheet" href="new-contact.f9a8453e.css"></head><body class="align-items-center container d-flex flex-column gd-bg justify-content-center min-vh-100"> <div class="bg-light bg-opacity-75 col-lg-8 container p-4 rounded-3"> <div class="gy-2 px-3 row"> <div class="col-1 p-0"> <a class="bg-gradient bg-primary btn btn-lg btn-primary float-start" href="index.html"> <i class="bi bi-house-door"></i> </a> </div> <div class="col"> <h1 class="mx-auto" style="width:fit-content">Add new Contact</h1> </div> <hr> <div class="alert alert-warning" role="alert" id="invlidImageAlert"> Involid file format. Please select an image. </div> </div> <div class="px-3 row"> <form class="needs-validation p-0" novalidate> <div class="g-3 row"> <div class="col-md-3"> <label class="form-label">Contact Image</label> <img id="img-upload" src="placeholder-image.601a6dc4.jpg" alt="test image" class="border border-light rounded-3" onclick="document.getElementById('formFile').click();"> <input class="form-control" type="file" id="formFile" accept="image/*" style="display:none"> <small class="text-muted">Click on the image to browse</small> </div> <div class="col"> <div class="g-3 row"> <div class="col-md-6"> <label for="validationFirstName" class="form-label">First name</label> <input type="text" class="form-control" id="validationFirstName" placeholder="Eg: Mark" autofocus required> <div id="validationFName" class="invalid-feedback"> Please provide a valid first name </div> </div> <div class="col-md-6"> <label for="validationLastName" class="form-label">Last name</label> <input type="text" class="form-control" id="validationLastName" placeholder="Eg: Otto" required> <div id="validationLName" class="invalid-feedback"> Please provide a valid last name </div> </div> <div class="col-md-6"> <label for="validationPhoneNumber" class="form-label">Phone Number</label> <input type="tel" class="form-control" id="validationPhoneNumber" placeholder="Eg: 077-417-8875" minlength="12" maxlength="12" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" required> <small class="text-muted">Format: 077-417-8875</small> <div id="validationPNumber" class="invalid-feedback"> Please provide a valid phone number </div> </div> <div class="col-md-6"> <label for="validationEmail" class="form-label">Email</label> <input type="email" class="form-control" id="validationEmail" placeholder="Eg: mark.otto@mail.com" required> <div id="validationMail" class="invalid-feedback"> Please provide a valid email address </div> </div> <div class="col-md-12"> <label for="validationAddress" class="form-label">Address</label> <input type="text" class="form-control" placeholder="Eg: 1701 Abner Road, Barron, WI, Wisconsin, 54812" id="validationAddress" required> <div class="invalid-feedback"> Please provide a valid address </div> </div> </div> </div> <div class="col-12 d-grid"> <button class="bg-gradient bg-primary btn btn-lg btn-primary" type="submit"> Save Contact </button> </div> </div> </form> </div> </div> <script type="module" src="new-contact.13c8e28c.js"></script> </body></html>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add New Contact</title>
+    <link rel="stylesheet" href="/index.93423d9f.css">
+    <link rel="stylesheet" href="/new-contact.2e8448e6.css">
+    <link rel="stylesheet" href="/index.2634dfcb.css">
+    <link rel="stylesheet" href="/new-contact.5f52b555.css">
+  </head>
+  <body class="
+      container
+      d-flex
+      flex-column
+      min-vh-100
+      justify-content-center
+      align-items-center
+      gd-bg
+    ">
+    <div class="container col-lg-8 p-4 bg-light bg-opacity-75 rounded-3">
+      <div class="row px-3 gy-2">
+        <div class="col-1 p-0">
+          <a class="btn btn-primary btn-lg bg-primary bg-gradient float-start" href="/index.html">
+            <i class="bi bi-house-door"></i>
+          </a>
+        </div>
+        <div class="col">
+          <h1 class="mx-auto" style="width: fit-content">Add new Contact</h1>
+        </div>
+        <hr>
+        <div class="alert alert-warning" role="alert" id="invlidImageAlert">
+          Involid file format. Please select an image.
+        </div>
+      </div>
+
+      <div class="row px-3">
+        <form class="needs-validation p-0" novalidate="">
+          <div class="row g-3">
+            <div class="col-md-3">
+              <label class="form-label">Contact Image</label>
+              <img id="img-upload" src="/placeholder-image.7803b977.jpg" alt="test image" class="rounded-3 border border-light" onclick="document.getElementById('formFile').click();">
+              <input class="form-control" type="file" id="formFile" accept="image/*" style="display: none">
+              <small class="text-muted">Click on the image to browse</small>
+            </div>
+            <div class="col">
+              <div class="row g-3 mb-3">
+                <div class="col-md-6">
+                  <label for="validationFirstName" class="form-label">First name</label>
+                  <input type="text" class="form-control" id="validationFirstName" placeholder="Eg: Mark" minlength="3" autofocus="" required="">
+                  <div id="validationFName" class="invalid-feedback">
+                    Please provide a valid first name
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <label for="validationLastName" class="form-label">Last name</label>
+                  <input type="text" class="form-control" id="validationLastName" placeholder="Eg: Otto">
+                  <div id="validationLName" class="invalid-feedback">
+                    Please provide a valid last name
+                  </div>
+                </div>
+              </div>
+              <div class="row g-3 mb-3">
+                <div class="col-md-6">
+                  <label for="validationPhoneNumber" class="form-label">Phone Number</label>
+                  <input type="tel" class="form-control" id="validationPhoneNumber" placeholder="Eg: 0774178875" minlength="3" maxlength="10" pattern="[0-9]{10}">
+                  <div id="validationPNumber" class="invalid-feedback">
+                    Please provide a valid phone number
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <label for="validationEmail" class="form-label">Email</label>
+                  <input type="email" class="form-control" id="validationEmail" placeholder="Eg: mark.otto@mail.com">
+                  <div id="validationMail" class="invalid-feedback">
+                    Please provide a valid email
+                  </div>
+                </div>
+                <small class="text-muted mt-0">Please provide at least a valid phone number or an email as
+                  contact</small>
+              </div>
+              <div class="row g-3">
+                <div class="col-md-12">
+                  <label for="validationAddress" class="form-label">Address</label>
+                  <input type="text" class="form-control" placeholder="Eg: 1701 Abner Road, Barron, WI, Wisconsin, 54812" id="validationAddress" minlength="3">
+                  <div class="invalid-feedback">
+                    Please provide a valid address
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-12 d-grid">
+              <button class="btn btn-primary btn-lg bg-primary bg-gradient" type="submit">
+                Save Contact
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <script src="/new-contact.7b66d558.js" defer=""></script>
+  </body>
+</html>

@@ -1,1 +1,0 @@
-{"mappings":"AAAA,YAEA,cAAA,CADA,UAEA,CACA,kBACA,YACA","sources":["css/new-contact.css"],"sourcesContent":["#img-upload {\n  width: 100%;\n  cursor: pointer;\n}\n#invlidImageAlert {\n  display: none;\n}\n"],"names":[],"version":3,"file":"new-contact.f9a8453e.css.map"}
