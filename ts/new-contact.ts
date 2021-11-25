@@ -1,6 +1,8 @@
 // Example starter JavaScript for disabling form submissions if there are invalid fields
 import $ from "jquery";
 
+const BASE_API = "http://localhost:8080/cb/contact";
+
 (function () {
   "use strict";
 
@@ -100,3 +102,5 @@ $("#btnSubmit").on("click", () => {
     return;
   }
 });
+
+function saveContact() {}

@@ -463,6 +463,7 @@ var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 // Example starter JavaScript for disabling form submissions if there are invalid fields
 var _jquery = require("jquery");
 var _jqueryDefault = parcelHelpers.interopDefault(_jquery);
+const BASE_API = "http://localhost:8080/cb/contact";
 (function() {
     // Fetch all the forms we want to apply custom Bootstrap validation styles to
     var forms = document.querySelectorAll(".needs-validation");
@@ -531,6 +532,8 @@ _jqueryDefault.default("#btnSubmit").on("click", ()=>{
         return;
     }
 });
+function saveContact() {
+}
 
 },{"jquery":"bE6My","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"bE6My":[function(require,module,exports) {
 /*!
