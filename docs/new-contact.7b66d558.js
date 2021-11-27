@@ -463,7 +463,7 @@ var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 // Example starter JavaScript for disabling form submissions if there are invalid fields
 var _jquery = require("jquery");
 var _jqueryDefault = parcelHelpers.interopDefault(_jquery);
-const BASE_API = "http://localhost:8080/cb/contact";
+const BASE_API = "http://localhost:8080/cbook/contact";
 (function() {
     // Fetch all the forms we want to apply custom Bootstrap validation styles to
     var forms = document.querySelectorAll(".needs-validation");
@@ -512,7 +512,8 @@ _jqueryDefault.default(document).ready(function() {
         _jqueryDefault.default("#validationPhoneNumber").attr("required", 1);
     }
 });
-_jqueryDefault.default("#btnSubmit").on("click", ()=>{
+_jqueryDefault.default("#btnSubmit").on("click", (e)=>{
+    e.preventDefault();
     const fname = _jqueryDefault.default("#validationFirstName").val().trim();
     const lname = _jqueryDefault.default("#validationLastName").val().trim();
     const phone = _jqueryDefault.default("#validationPhoneNumber").val().trim();
@@ -527,12 +528,38 @@ _jqueryDefault.default("#btnSubmit").on("click", ()=>{
     } else if (email && !/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)) {
         _jqueryDefault.default("#validationEmail").trigger("focus");
         return;
-    } else if (address && !/[.]{3,}/.test(address)) {
+    } else if (address && !/.{3,}/.test(address)) {
         _jqueryDefault.default("#validationAddress").trigger("focus");
         return;
     }
+    let picture = document.getElementById("formFile").files;
+    saveContact(fname, lname, phone, email, address, picture.length === 0 ? null : picture[0]).then((data)=>{
+        console.log(`${data} has been saved sucessfully`);
+        document.getElementById("frm").reset();
+        _jqueryDefault.default("#validationFirstName").trigger("focus");
+    }).catch((err)=>{
+        console.log(err);
+    });
 });
-function saveContact() {
+function saveContact(fname, lname = null, phone = null, email = null, address = null, picture) {
+    return new Promise((res, rej)=>{
+        const contactData = new FormData();
+        contactData.append("fname", fname);
+        contactData.append("lname", lname);
+        contactData.append("phone", phone);
+        contactData.append("email", email);
+        contactData.append("address", address);
+        contactData.append("cimage", picture);
+        fetch(BASE_API, {
+            method: "POST",
+            body: contactData
+        }).then((respone)=>{
+            if (respone.status != 201) throw new Error("Failed to save the contact");
+            res(respone.json());
+        }).catch((err)=>{
+            rej(err);
+        });
+    });
 }
 
 },{"jquery":"bE6My","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"bE6My":[function(require,module,exports) {

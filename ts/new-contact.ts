@@ -1,8 +1,7 @@
 // Example starter JavaScript for disabling form submissions if there are invalid fields
 import $ from "jquery";
 
-const BASE_API = "http://localhost:8080/cb/contact";
-
+const BASE_API = "http://localhost:8080/cbook/contact";
 (function () {
   "use strict";
 
@@ -78,7 +77,8 @@ $(document).ready(function () {
   }
 });
 
-$("#btnSubmit").on("click", () => {
+$("#btnSubmit").on("click", (e) => {
+  e.preventDefault();
   const fname = ($("#validationFirstName").val() as String).trim();
   const lname = ($("#validationLastName").val() as String).trim();
   const phone = ($("#validationPhoneNumber").val() as String).trim();
@@ -97,10 +97,62 @@ $("#btnSubmit").on("click", () => {
   ) {
     $("#validationEmail").trigger("focus");
     return;
-  } else if (address && !/[.]{3,}/.test(address)) {
+  } else if (address && !/.{3,}/.test(address)) {
     $("#validationAddress").trigger("focus");
     return;
   }
+
+  let picture = (document.getElementById("formFile") as HTMLInputElement).files;
+
+  saveContact(
+    fname,
+    lname,
+    phone,
+    email,
+    address,
+    picture.length === 0 ? null : picture[0]
+  )
+    .then((data) => {
+      console.log(`${data} has been saved sucessfully`);
+      (document.getElementById("frm") as HTMLFormElement).reset();
+      $("#validationFirstName").trigger("focus");
+    })
+    .catch((err) => {
+      console.log(err);
+    });
 });
 
-function saveContact() {}
+function saveContact(
+  fname: string,
+  lname: string = null,
+  phone: string = null,
+  email: string = null,
+  address: string = null,
+  picture: File | null
+): Promise<string> {
+  return new Promise<string>((res, rej) => {
+    const contactData = new FormData();
+
+    contactData.append("fname", fname);
+    contactData.append("lname", lname);
+    contactData.append("phone", phone);
+    contactData.append("email", email);
+    contactData.append("address", address);
+    contactData.append("cimage", picture);
+
+    fetch(BASE_API, {
+      method: "POST",
+      body: contactData,
+    })
+      .then((respone) => {
+        if (respone.status != 201) {
+          throw new Error("Failed to save the contact");
+        }
+
+        res(respone.json());
+      })
+      .catch((err) => {
+        rej(err);
+      });
+  });
+}
