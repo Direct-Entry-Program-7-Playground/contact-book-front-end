@@ -495,14 +495,16 @@ _jqueryDefault.default(document).ready(function() {
             }
         }
     });
-    _jqueryDefault.default("#validationEmail").on("change", (e)=>{
-        if (_jqueryDefault.default("#validationEmail").val().match(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/)) removeRequired();
-        else addRequired();
+    _jqueryDefault.default("#validationEmail").on("input", (e)=>{
+        toggleRequired();
     });
-    _jqueryDefault.default("#validationPhoneNumber").on("change", (e)=>{
-        if (_jqueryDefault.default("#validationPhoneNumber").val().match(/[0-9]{10}/)) removeRequired();
-        else addRequired();
+    _jqueryDefault.default("#validationPhoneNumber").on("input", (e)=>{
+        toggleRequired();
     });
+    function toggleRequired() {
+        if (_jqueryDefault.default("#validationEmail").val().match(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/) || _jqueryDefault.default("#validationPhoneNumber").val().match(/[0-9]{3,10}/)) removeRequired();
+        else addRequired();
+    }
     function removeRequired() {
         _jqueryDefault.default("#validationEmail").removeAttr("required");
         _jqueryDefault.default("#validationPhoneNumber").removeAttr("required");
@@ -513,7 +515,6 @@ _jqueryDefault.default(document).ready(function() {
     }
 });
 _jqueryDefault.default("#btnSubmit").on("click", (e)=>{
-    e.preventDefault();
     const fname = _jqueryDefault.default("#validationFirstName").val().trim();
     const lname = _jqueryDefault.default("#validationLastName").val().trim();
     const phone = _jqueryDefault.default("#validationPhoneNumber").val().trim();
@@ -522,7 +523,7 @@ _jqueryDefault.default("#btnSubmit").on("click", (e)=>{
     if (!/[A-Za-z]{3,}/.test(fname)) {
         _jqueryDefault.default("#validationFirstName").trigger("focus");
         return;
-    } else if (phone && !/[\d]{3,10}/.test(phone)) {
+    } else if (phone && !/[\d]{3,}/.test(phone)) {
         _jqueryDefault.default("#validationPhoneNumber").trigger("focus");
         return;
     } else if (email && !/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)) {

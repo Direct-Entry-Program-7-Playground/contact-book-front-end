@@ -46,25 +46,26 @@ $(document).ready(function () {
     }
   });
 
-  $("#validationEmail").on("change", (e) => {
+  $("#validationEmail").on("input", (e) => {
+    toggleRequired();
+  });
+
+  $("#validationPhoneNumber").on("input", (e) => {
+    toggleRequired();
+  });
+
+  function toggleRequired() {
     if (
       ($("#validationEmail").val() as String).match(
         /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/
-      )
+      ) ||
+      ($("#validationPhoneNumber").val() as String).match(/[0-9]{3,10}/)
     ) {
       removeRequired();
     } else {
       addRequired();
     }
-  });
-
-  $("#validationPhoneNumber").on("change", (e) => {
-    if (($("#validationPhoneNumber").val() as String).match(/[0-9]{10}/)) {
-      removeRequired();
-    } else {
-      addRequired();
-    }
-  });
+  }
 
   function removeRequired() {
     $("#validationEmail").removeAttr("required");
@@ -78,7 +79,6 @@ $(document).ready(function () {
 });
 
 $("#btnSubmit").on("click", (e) => {
-  e.preventDefault();
   const fname = ($("#validationFirstName").val() as String).trim();
   const lname = ($("#validationLastName").val() as String).trim();
   const phone = ($("#validationPhoneNumber").val() as String).trim();
@@ -88,7 +88,7 @@ $("#btnSubmit").on("click", (e) => {
   if (!/[A-Za-z]{3,}/.test(fname)) {
     $("#validationFirstName").trigger("focus");
     return;
-  } else if (phone && !/[\d]{3,10}/.test(phone)) {
+  } else if (phone && !/[\d]{3,}/.test(phone)) {
     $("#validationPhoneNumber").trigger("focus");
     return;
   } else if (
@@ -103,7 +103,6 @@ $("#btnSubmit").on("click", (e) => {
   }
 
   let picture = (document.getElementById("formFile") as HTMLInputElement).files;
-
   saveContact(
     fname,
     lname,

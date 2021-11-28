@@ -460,41 +460,67 @@ function hmrAcceptRun(bundle, id) {
 
 },{}],"4kXqX":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-// Example starter JavaScript for disabling form submissions if there are invalid fields
 var _jquery = require("jquery");
 var _jqueryDefault = parcelHelpers.interopDefault(_jquery);
-(function() {
-    // Fetch all the forms we want to apply custom Bootstrap validation styles to
-    var forms = document.querySelectorAll(".needs-validation");
-    // Loop over them and prevent submission
-    Array.prototype.slice.call(forms).forEach(function(form) {
-        form.addEventListener("submit", function(event) {
-            if (!form.checkValidity()) {
-                event.preventDefault();
-                event.stopPropagation();
-            }
-            form.classList.add("was-validated");
-        }, false);
-    });
-})();
-_jqueryDefault.default(document).ready(function() {
-    const reader = new FileReader();
-    reader.onload = (e)=>{
-        _jqueryDefault.default("#img-upload").attr("src", e.target.result);
-    };
-    _jqueryDefault.default("#formFile").on("input", ()=>{
-        let files = document.getElementById("formFile").files;
-        _jqueryDefault.default("#invlidImageAlert").hide();
-        if (files && files[0]) {
-            const reg = /(image\/[a-z]+)/gi;
-            if (files[0].type.match(reg)) reader.readAsDataURL(files[0]);
-            else {
-                _jqueryDefault.default("#invlidImageAlert").stop().show(200).delay(10000).hide(200);
-                return;
-            }
-        }
-    });
+const BASE_API = "http://localhost:8080/cbook/contact";
+findContact("");
+_jqueryDefault.default("#txt-search").on("input", ()=>{
+    let query = _jqueryDefault.default("#txt-search").val().trim();
+    findContact(query);
 });
+function findContact(q) {
+    let qString = q === "" ? "" : "?q=" + q;
+    let apiURL = `${BASE_API + "" + qString}`;
+    fetch(apiURL, {
+        method: "GET"
+    }).then((response)=>{
+        if (response.status !== 200) throw Error("Couldn't fetch data");
+        return response.json();
+    }).then((contacts)=>{
+        console.log(contacts);
+        _jqueryDefault.default("#contactList").empty();
+        let htmlContent = "";
+        contacts.forEach((c)=>{
+            htmlContent += `<li class="list-group-item px-0" aria-current="true">
+      <div class="row g-0">
+        <div
+          class="
+                      col-md
+                      d-md-flex
+                      justify-content-center
+                      align-items-center
+                    "
+        >
+          <img
+            ${c.picture === undefined ? "src=./placeholder-image.jpg" : "src=" + c.picture}
+            class="img-fluid rounded-2"
+            alt="..."
+            style="max-height: 100px"
+          />
+        </div>
+        <div class="col-md-10">
+          <div class="p-1">
+            <h5 class="">${c.fName + " " + (c.lName !== undefined ? c.lName : "")}</h5>
+            <p class="m-0">
+              <span class="fw-bold"> Phone Number: </span>
+              ${c.phone !== undefined ? c.phone : "-"}
+            </p>
+            <p class="m-0">
+              <span class="fw-bold"> Email: </span>
+              ${c.email !== undefined ? c.email : "-"}
+            </p>
+            <p class="card-text m-0">
+              <span class="fw-bold"> Address: </span>
+              ${c.address !== undefined ? c.address : "-"}
+            </p>
+          </div>
+        </div>
+      </div>
+    </li>`;
+        });
+        _jqueryDefault.default("#contactList").append(htmlContent);
+    });
+}
 
 },{"jquery":"bE6My","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"bE6My":[function(require,module,exports) {
 /*!

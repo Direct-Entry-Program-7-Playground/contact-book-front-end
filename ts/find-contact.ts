@@ -1,47 +1,73 @@
-// Example starter JavaScript for disabling form submissions if there are invalid fields
 import $ from "jquery";
+import { Contact } from "./dto/contact";
+const BASE_API = "http://localhost:8080/cbook/contact";
+findContact("");
 
-(function () {
-  "use strict";
-
-  // Fetch all the forms we want to apply custom Bootstrap validation styles to
-  var forms = document.querySelectorAll(".needs-validation");
-
-  // Loop over them and prevent submission
-  Array.prototype.slice.call(forms).forEach(function (form) {
-    form.addEventListener(
-      "submit",
-      function (event) {
-        if (!form.checkValidity()) {
-          event.preventDefault();
-          event.stopPropagation();
-        }
-
-        form.classList.add("was-validated");
-      },
-      false
-    );
-  });
-})();
-
-$(document).ready(function () {
-  const reader = new FileReader();
-
-  reader.onload = (e) => {
-    $("#img-upload").attr("src", e.target.result as string);
-  };
-
-  $("#formFile").on("input", () => {
-    let files = (document.getElementById("formFile") as HTMLInputElement).files;
-    $("#invlidImageAlert").hide();
-    if (files && files[0]) {
-      const reg = /(image\/[a-z]+)/gi;
-      if (files[0].type.match(reg)) {
-        reader.readAsDataURL(files[0]);
-      } else {
-        $("#invlidImageAlert").stop().show(200).delay(10000).hide(200);
-        return;
-      }
-    }
-  });
+$("#txt-search").on("input", () => {
+  let query: string = ($("#txt-search").val() as string).trim();
+  findContact(query);
 });
+
+function findContact(q: string) {
+  let qString: string = q === "" ? "" : "?q=" + q;
+  let apiURL: string = `${BASE_API + "" + qString}`;
+
+  fetch(apiURL, {
+    method: "GET",
+  })
+    .then((response) => {
+      if (response.status !== 200) throw Error("Couldn't fetch data");
+      return response.json();
+    })
+    .then((contacts) => {
+      console.log(contacts);
+      $("#contactList").empty();
+
+      let htmlContent: string = "";
+      contacts.forEach((c: Contact) => {
+        htmlContent += `<li class="list-group-item px-0" aria-current="true">
+      <div class="row g-0">
+        <div
+          class="
+                      col-md
+                      d-md-flex
+                      justify-content-center
+                      align-items-center
+                    "
+        >
+          <img
+            ${
+              c.picture === (null || undefined)
+                ? "src=" + "./placeholder-image.jpg"
+                : "src=" + c.picture
+            }
+            class="img-fluid rounded-2"
+            alt="..."
+            style="max-height: 100px"
+          />
+        </div>
+        <div class="col-md-10">
+          <div class="p-1">
+            <h5 class="">${
+              c.fName + " " + (c.lName !== (null || undefined) ? c.lName : "")
+            }</h5>
+            <p class="m-0">
+              <span class="fw-bold"> Phone Number: </span>
+              ${c.phone !== (null || undefined) ? c.phone : "-"}
+            </p>
+            <p class="m-0">
+              <span class="fw-bold"> Email: </span>
+              ${c.email !== (null || undefined) ? c.email : "-"}
+            </p>
+            <p class="card-text m-0">
+              <span class="fw-bold"> Address: </span>
+              ${c.address !== (null || undefined) ? c.address : "-"}
+            </p>
+          </div>
+        </div>
+      </div>
+    </li>`;
+      });
+      $("#contactList").append(htmlContent);
+    });
+}
